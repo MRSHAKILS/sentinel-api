@@ -143,8 +143,10 @@ def draft_texts(
         "X-Title": "QueueStorm Investigator",
     }
 
+    budget = settings.timeout_seconds()
+    timeout = httpx.Timeout(budget, connect=min(2.0, budget))
     try:
-        with httpx.Client(timeout=settings.timeout_seconds()) as client:
+        with httpx.Client(timeout=timeout) as client:
             resp = client.post(
                 f"{settings.base_url()}/chat/completions",
                 json=payload,

@@ -111,7 +111,10 @@ async def health() -> dict:
 
 
 @app.post("/analyze-ticket")
-async def analyze_ticket(req: AnalyzeRequest) -> JSONResponse:
+def analyze_ticket(req: AnalyzeRequest) -> JSONResponse:
+    # Defined as a SYNC handler on purpose: the pipeline makes a blocking
+    # (optional) LLM HTTP call, so FastAPI runs this in its threadpool instead of
+    # on the event loop. That keeps /health and concurrent requests responsive.
     if not req.complaint.strip():
         raise EmptyComplaintError()
     result = analyze(req)

@@ -56,6 +56,8 @@ curl -X POST http://localhost:8000/analyze-ticket \
 ```
 
 See [RUNBOOK.md](RUNBOOK.md) for a copy-paste deployment guide.
+For last-mile submission checks, see [MANUAL_TEST_SCRIPTS.md](MANUAL_TEST_SCRIPTS.md)
+and [VIDEO_SCRIPT_90_SECONDS.md](VIDEO_SCRIPT_90_SECONDS.md).
 
 ---
 

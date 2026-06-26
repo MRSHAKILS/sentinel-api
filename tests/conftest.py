@@ -1,4 +1,5 @@
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -8,6 +9,12 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
+
+# Hard-disable the LLM for the whole suite BEFORE the app is imported, so tests
+# are hermetic/offline regardless of any local .env. LLM behaviour is covered
+# separately with a mocked client in test_llm.py.
+os.environ["USE_LLM"] = "false"
+os.environ["OPENROUTER_API_KEY"] = ""
 
 from fastapi.testclient import TestClient  # noqa: E402
 

@@ -2,7 +2,7 @@
   "_meta": {
     "service": "QueueStorm Investigator",
     "endpoint": "POST /analyze-ticket",
-    "note": "Outputs produced by this service for the 10 public sample inputs."
+    "note": "Deterministic rule-engine outputs for the 10 public sample inputs (reproducible without an API key). With USE_LLM=true the SCORED fields are identical; only agent_summary/recommended_next_action/customer_reply are rewritten more fluently by Gemini 2.5 Flash and re-checked by the safety scrubber."
   },
   "results": [
     {

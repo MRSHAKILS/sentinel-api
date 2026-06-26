@@ -15,13 +15,18 @@ from __future__ import annotations
 import logging
 import os
 
+from dotenv import load_dotenv
 from fastapi import FastAPI, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
-from . import __version__
-from .pipeline import analyze
-from .schemas import AnalyzeRequest
+# Load a local .env if present. override=False so a hosting platform's real env
+# vars always win, and so values pre-set by the test harness are respected.
+load_dotenv(override=False)
+
+from . import __version__  # noqa: E402
+from .pipeline import analyze  # noqa: E402
+from .schemas import AnalyzeRequest  # noqa: E402
 
 logger = logging.getLogger("queuestorm")
 
